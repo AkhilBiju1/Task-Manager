@@ -25,7 +25,7 @@ export default function login() {
                         
                         <div className="my-4 flex justify-between"> 
                             <button type="submit" className="bg-blue-700 p-2 px-4 rounded-md text-white">Login</button>
-                            <div className="p-2"><span className="text sm">Don't have an account? </span><Link href="/signup" className="text-blue-700 underline">Create account</Link></div>
+                            <div className="p-2"><span className={"text sm"}>Don't have an account? </span> <Link href={"/signup"} className="text-blue-700 underline">Create account</Link></div>
                         </div>
                     </form>
                 </div>
