@@ -3,6 +3,8 @@ import { FaBarsProgress } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
 import Image from "next/image";
 import about from '../../public/about.png'
+import Link from "next/link";
+
 
 
 export default function Home() {
@@ -19,7 +21,7 @@ export default function Home() {
                 <a href="#features" className="hover:text-blue-700">Features</a>
               </li>
               <li>
-                <a href="/login" className="hover:bg-blue-700 bg-blue-600 py-2 px-6 text-white rounded-full">Login</a>
+                <Link replace={true} href="/login" className="hover:bg-blue-700 bg-blue-600 py-2 px-6 text-white rounded-full">Login</Link>
               </li>
             </ul>
           </nav>
@@ -69,7 +71,7 @@ export default function Home() {
       <section id="cta" className="bg-blue-700 text-white text-center py-16 px-6">
         <h3 className="text-3xl font-semibold mb-4">Boost Your Productivity Today</h3>
         <p className="mb-6">Sign up now and take control of your tasks.</p>
-        <a href="/signup" className="bg-white text-blue-700 px-6 py-3 rounded-lg shadow-md hover:bg-gray-200">Sign Up</a>
+        <Link replace={true} href="/signup" className="bg-white text-blue-700 px-6 py-3 rounded-lg shadow-md hover:bg-gray-200">Sign Up</Link>
       </section>
 
       {/* Footer */}
