@@ -12,8 +12,8 @@ export async function POST(req: Request) {
         
         
         return payload
-            ? NextResponse.json({ success: true, userId: payload.id })
-            : NextResponse.json({ success: false, message: "Invalid token" }, { status: 401 }).cookies.delete('token')
+            ? NextResponse.json({ success: true,})
+            : NextResponse.json({ success: false, message: "Invalid token" }, { status: 401 })
 
     } catch (error) {
         console.error("JWT verification error:", error);
