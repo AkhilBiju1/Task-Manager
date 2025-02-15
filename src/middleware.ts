@@ -18,12 +18,21 @@ export async function middleware(req: NextRequest) {
 
     
     try {
+        const verifyResponse = await fetch(`${req.nextUrl.origin}/api/auth/verifytoken`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token }),
+        });
+
+        const data = await verifyResponse.json(); 
         
-        const verifyResponse = await axios.post(`${req.nextUrl.origin}/api/auth/verifytoken`, { token });
-        (req as any).userId = verifyResponse.data.userId
-        return verifyResponse.data.success
+
+        return data.success
             ? NextResponse.next()
-            : NextResponse.redirect(new URL("/login", req.url))
+            : NextResponse.redirect(new URL("/login", req.url));
+
     } catch (error) {
         return NextResponse.redirect(new URL("/login", req.url));
     }
