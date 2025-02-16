@@ -1,19 +1,19 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/jwthandlers";
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<NextResponse> {
     try {
-        const { token } = await req.json(); 
-        if (!token) {
+        const body: { token?: string } = await req.json();
+
+        if (!body.token) {
             return NextResponse.json({ success: false, message: "Token missing" }, { status: 400 });
         }
 
-        const payload = verifyToken(token);
-        
-        
-        return payload
-            ? NextResponse.json({ success: true,})
-            : NextResponse.json({ success: false, message: "Invalid token" }, { status: 401 })
+        const user = verifyToken(body.token);
+
+        return user
+            ? NextResponse.json({ success: true, name: user.uname })
+            : NextResponse.json({ success: false, message: "Invalid token" }, { status: 401 });
 
     } catch (error) {
         console.error("JWT verification error:", error);
