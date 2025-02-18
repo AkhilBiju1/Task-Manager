@@ -115,8 +115,8 @@ export async function editTask(id: string, updates: { title: string, description
         const result = await db.update(tasks)
             .set(updates)
             .where(eq(tasks.id, parseInt(id)))
-            .returning(); // Returns the updated task
-        return result[0]; // Return updated task
+            .returning(); 
+        return result[0]; 
     } catch (error) {
         console.error("Error updating task:", error);
         throw new Error("Failed to update task");

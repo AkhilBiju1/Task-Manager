@@ -24,8 +24,17 @@ const chartOptions: ChartOptions<"pie"> = {
 export default function TaskChartComponent() {
 
     const fetchStats = async () => {
-        const res = await axios.get("/api/tasks/stats");
-        return res.data.count;
+        try {
+            const res = await axios.get("/api/tasks/stats");
+            return res.data.count;
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                throw error.response.data;
+            } else {
+                throw { message: 'Unknown error occurred' };
+            }
+        }
+       
     };
     const statsQuery = useQuery({ queryKey: ["stats"], queryFn: fetchStats, refetchInterval: 2000 });
     if (statsQuery.isLoading) return (<div className="w-full h-full grid grid-rows-9 "><h1 className="row-start-5 text-md text-center items-center ">loading</h1></div>)

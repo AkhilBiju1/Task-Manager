@@ -11,8 +11,8 @@ export async function GET(req: NextRequest) {
         if (calender) {
             try {
                 const headersList = await headers()
-                const username = headersList.get('x-user-id') || '';
-                const allTask = await getAllCalenderTask(username)
+                const id = headersList.get('x-user-id') || '';
+                const allTask = await getAllCalenderTask(id)
 
 
                 if (allTask) {
@@ -32,7 +32,8 @@ export async function GET(req: NextRequest) {
             try {
         
                 const task = await getTaskById(id);
-
+               
+                
                 if (!task) {
                     return NextResponse.json({ error: "Task not found" }, { status: 404 });
                 }

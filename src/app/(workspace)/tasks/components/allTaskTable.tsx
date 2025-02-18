@@ -46,8 +46,16 @@ const columns: ColumnDef<Task>[] = [
 
 export default function TasksTable() {
     const fetchTasks = async () => {
-        const res = await axios.get("/api/tasks");
-        return res.data.tasks;
+        try {
+            const res = await axios.get("/api/tasks");
+            return res.data.tasks;
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                throw error.response.data;
+            } else {
+                throw { message: 'Unknown error occurred' };
+            }
+        }
     };
     const { data, isLoading, error, isSuccess ,refetch} = useQuery({ queryKey: ["tasks"], queryFn: fetchTasks, refetchInterval: 2000 });   
     const [globalFilter, setGlobalFilter] = useState("");

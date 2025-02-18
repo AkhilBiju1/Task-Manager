@@ -1,5 +1,6 @@
-import { FaUser } from "react-icons/fa";
+
 import { GoTasklist } from "react-icons/go";
+import LogoutButton from "./logoutButton";
 
 
 export default function Sidebar() {
@@ -13,7 +14,7 @@ export default function Sidebar() {
                 <li className="mt-3"><a href="/dashboard">Dashboard</a></li>
                 <li className="mt-3"><a href="/tasks">Tasks</a></li>
                 <li className="mt-3 "><a href="/projects">Projects</a></li>
-                <li className=" mt-3 "><a href="#">Logout</a></li>
+                <li className=" mt-3 "><LogoutButton/></li>
             </ul>
             
         </section>

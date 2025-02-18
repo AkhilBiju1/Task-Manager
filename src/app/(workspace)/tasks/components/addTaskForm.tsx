@@ -1,11 +1,25 @@
 "use client";
 import { useState } from "react";
 import  React from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { categories } from "@/db/schema";
+import { index } from "drizzle-orm/mysql-core";
 
 export default function AddTaskForm() {
-
+    const fetchCategoryAndProject = async () => {
+        try {
+            const {data} = await axios.get("/api/allcategoryandproject");
+            return data;
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                throw error.response.data;
+            } else {
+                throw { message: 'Unknown error occurred' };
+            }
+        }
+    }
+    const CategoryandProjectQuery=useQuery({queryKey: ['CategoryAndProject'],queryFn:fetchCategoryAndProject})
     const [formData, setFormData] = useState({
         title: "",
         description: "",
@@ -85,10 +99,14 @@ export default function AddTaskForm() {
                 value={formData.category_id}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            >
+            >   
                 <option value="" disabled>Select Category</option>
-                <option value="1">Category 1</option>
-                <option value="2">Category 2</option>
+                {CategoryandProjectQuery.data?.categories.map((category: { id: string, name: string }, index: number) => (
+
+                    <option key={index} value={category.id}>{category.name}</option>
+                ))}
+               
+                
             </select>
             <select
                 name="project_id"
@@ -96,10 +114,13 @@ export default function AddTaskForm() {
                 value={formData.project_id}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            >
+            >   
                 <option value="" disabled>Select Project</option>
-                <option value="1">Project 1</option>
-                <option value="2">Project 2</option>
+                {CategoryandProjectQuery.data?.projects.map((project: { id: string, name: string},index:number) => (
+
+                    <option key={index} value={project.id}>{project.name}</option>
+                ))
+ }           
             </select>
             <input
                 type="date"

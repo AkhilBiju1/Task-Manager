@@ -5,10 +5,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 
-export default function EditTaskForm() {
+export default  function EditTaskForm() {
     const router = useRouter()
-    const { id } = useParams()
+    const { id } =  useParams()
     const [formData, setFormData] = useState({
+        id:'',
         title: "",
         status: '',
         description: "",
@@ -26,6 +27,7 @@ export default function EditTaskForm() {
     useEffect(()=>{
         if (taskFetch.status === 'success') {
             setFormData({
+                id:taskFetch.data.id,
                 title: taskFetch.data.title,
                 status: taskFetch.data.status,
                 description: taskFetch.data.description,
@@ -64,6 +66,8 @@ export default function EditTaskForm() {
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        console.log(e.target.value);
+        
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -116,9 +120,10 @@ export default function EditTaskForm() {
                 value={formData.priority}
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            >
-                <option value="high">High</option>
+            >   
+               
                 <option value="low">Low</option>
+                <option value="high">High</option>
             </select>
             <p className="text-xs text-green-600">{isSuccess ? data : ''}</p>
             <p className="text-xs text-red-600">{isError ? error.message : ''}</p>

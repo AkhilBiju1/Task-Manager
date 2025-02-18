@@ -8,8 +8,17 @@ const upcomingTasksQueryKey: ["upcomingTasks"] = ["upcomingTasks"];
 export default function TaskCards() {
     const queryClient = useQueryClient();
     const fetchStats = async () => {
-        const res = await axios.get("/api/tasks/upcoming");
-        return res.data;
+        try {
+            const res = await axios.get("/api/tasks/upcoming");
+            return res.data;
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                throw error.response.data;
+            } else {
+                throw { message: 'Unknown error occurred' };
+            }
+        }
+       
     };
     const upcomingTaskQuery = useQuery({ queryKey: upcomingTasksQueryKey, queryFn: fetchStats });
     
