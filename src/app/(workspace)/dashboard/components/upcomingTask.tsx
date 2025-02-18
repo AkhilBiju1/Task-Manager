@@ -57,14 +57,14 @@ export default function TaskCards() {
         {upcomingTaskQuery.error.message + 'try again later'}
     </div>)
     if (upcomingTaskQuery.isSuccess) return (
-        <div className=" items-center p-2   h-full">
+        <div className=" items-center p-2   h-full w-full">
             <h1 className="text-2xl font-bold mb-2">Upcoming Tasks</h1>
 
             {upcomingTaskQuery.data.length > 0 ?
                 
-                <div className=" flex justify-around   gap-6">
+                <div className="w-full h-full  gap-6">
                     {upcomingTaskQuery.data.map((task: { id: string, title: string, description: string, status: string, priority: string, due_date: string }, index: number) => (
-                        <div key={index} className="bg-white  shadow-md rounded-2xl p-6 w-64">
+                        <div key={index} className="bg-white  shadow-md rounded-2xl p-6 w-full">
                             <h2 className="text-xl font-semibold uppercase">{task.title}</h2>
                             <p className="text-gray-800 mt-2 capitalize">{task.description}</p>
                             <div className="mt-2 flex justify-between" >

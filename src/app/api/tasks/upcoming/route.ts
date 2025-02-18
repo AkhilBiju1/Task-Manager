@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
             .from(tasks)
             .where(and(eq(tasks.status, "pending"), gt(tasks.due_date, today), eq(tasks.user_id, parseInt(id))))
             .orderBy(tasks.due_date) 
-            .limit(2);
+            .limit(1);
 
         return NextResponse.json(upcomingTasks);
     } catch (error) {
