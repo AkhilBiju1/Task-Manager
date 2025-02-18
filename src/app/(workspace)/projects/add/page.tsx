@@ -1,5 +1,5 @@
-import Sidebar from "../components/sidebar";
-import AllTask from "./components/AllTask";
+import Sidebar from "../../components/sidebar";
+import AddProject from "../components/addProjectComponent";
 
 export const metadata = {
     title: "TaskPilot Tasks"
@@ -10,8 +10,8 @@ export default function Tasks() {
         <div className="w-screen h-screen bg-blue-50  grid grid-cols-12 grid-rows-12 gap-4">
 
             <Sidebar />
-            <AllTask />
-           
+            <AddProject />
+
         </div>
     );
 }

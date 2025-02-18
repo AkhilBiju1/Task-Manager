@@ -12,7 +12,7 @@ export async function POST(req: Request): Promise<NextResponse> {
         const user = verifyToken(body.token);
 
         return user
-            ? NextResponse.json({ success: true, name: user.uname })
+            ? NextResponse.json({ success: true, name: user.uname ,id:user.id })
             : NextResponse.json({ success: false, message: "Invalid token" }, { status: 401 });
 
     } catch (error) {

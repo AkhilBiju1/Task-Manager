@@ -1,17 +1,18 @@
-import Sidebar from "../components/sidebar";
-import AllTask from "./components/AllTask";
+import Sidebar from "../../../components/sidebar";
+import EditTask from "../../components/editTaskComponent";
 
 export const metadata = {
-    title: "TaskPilot Tasks"
+    title: "Edit Task"
 };
 
 export default function Tasks() {
+    
     return (
         <div className="w-screen h-screen bg-blue-50  grid grid-cols-12 grid-rows-12 gap-4">
 
             <Sidebar />
-            <AllTask />
-           
+            <EditTask />
+
         </div>
     );
 }

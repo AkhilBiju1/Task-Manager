@@ -20,7 +20,6 @@ export const projects = pgTable('projects', {
     user_id: integer('user_id').references(() => users.id, { onDelete: 'cascade' }).notNull(),
     name: varchar('name', { length: 255 }).notNull(),
     description: varchar('description', { length: 1000 }), // Optional
-    status: varchar('status', { length: 50 }), // Example: 'active', 'completed'
 });
 
 // Tasks Table

@@ -1,5 +1,5 @@
 import { NextResponse, } from "next/server";
-import { getUser, createUser } from "@/db/queryies";
+import { getUser, createUser } from "../../../../db/queryies";
 import { createToken } from "@/lib/jwthandlers";
 
 export async function POST(req: Request) {

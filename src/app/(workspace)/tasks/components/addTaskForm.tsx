@@ -1,0 +1,130 @@
+"use client";
+import { useState } from "react";
+import  React from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+
+export default function AddTaskForm() {
+
+    const [formData, setFormData] = useState({
+        title: "",
+        description: "",
+        category_id: "",
+        project_id: "",
+        due_date: "",
+        priority: "low",
+    });
+    
+    const addUser = async () => {
+        try {
+       
+        
+        
+            const res = await axios.post(
+                '/api/tasks/add',
+                formData,
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+            return (res.data.message)
+        } catch (error) {
+
+            if (axios.isAxiosError(error) && error.response) {
+                throw error.response.data;
+            } else {
+                throw { message: 'Unknown error occurred' };
+            }
+        }
+
+    }
+
+    const { mutate, isError, error, isPending ,isSuccess, data} = useMutation({
+        mutationFn: addUser,
+        onSuccess: () => setFormData({
+            title: "",
+            description: "",
+            category_id: "",
+            project_id: "",
+            due_date: "",
+            priority: "low",
+        }),
+        
+        retry: 1,
+        retryDelay: 3000
+    })
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        mutate();
+    };
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+                type="text"
+                name="title"
+                placeholder="Task Title"
+                required
+                value={formData.title}
+                onChange={handleChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+            <textarea
+                name="description"
+                placeholder="Task Description (Optional)"
+                value={formData.description}
+                onChange={handleChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+            <select
+                name="category_id"
+                required
+                value={formData.category_id}
+                onChange={handleChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+                <option value="" disabled>Select Category</option>
+                <option value="1">Category 1</option>
+                <option value="2">Category 2</option>
+            </select>
+            <select
+                name="project_id"
+                required
+                value={formData.project_id}
+                onChange={handleChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+                <option value="" disabled>Select Project</option>
+                <option value="1">Project 1</option>
+                <option value="2">Project 2</option>
+            </select>
+            <input
+                type="date"
+                name="due_date"
+                min={new Date().toISOString().split('T')[0]}
+                value={formData.due_date}
+                onChange={handleChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            />
+            <select
+                name="priority"
+                required
+                value={formData.priority}
+                onChange={handleChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+                <option value="high">High</option>
+                <option value="low">Low</option>
+            </select>
+            <p className="text-xs text-green-600">{isSuccess ? data : ''}</p>
+            <p className="text-xs text-red-600">{isError ? error.message : ''}</p>
+            <button type="submit" className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition shadow-md">
+                {isPending ? "Adding..." : "Add Task"}
+            </button>
+
+        </form>
+    );
+}
