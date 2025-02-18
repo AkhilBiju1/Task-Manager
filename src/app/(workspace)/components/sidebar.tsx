@@ -1,6 +1,7 @@
 
 import { GoTasklist } from "react-icons/go";
 import LogoutButton from "./logoutButton";
+import Link from "next/link";
 
 
 export default function Sidebar() {
@@ -11,9 +12,9 @@ export default function Sidebar() {
             </div>
             <ul className="container h-4/6 p-3 mt-4  ">
 
-                <li className="mt-3"><a href="/dashboard">Dashboard</a></li>
-                <li className="mt-3"><a href="/tasks">Tasks</a></li>
-                <li className="mt-3 "><a href="/projects">Projects</a></li>
+                <li className="mt-3"><Link replace href="/dashboard">Dashboard</Link></li>
+                <li className="mt-3"><Link replace href="/tasks">Tasks</Link></li>
+                <li className="mt-3 "><Link replace href="/projects">Projects</Link></li>
                 <li className=" mt-3 "><LogoutButton/></li>
             </ul>
             
