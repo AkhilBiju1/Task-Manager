@@ -50,9 +50,10 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		},
+		  },
+		 
   		scrollBehavior: [
-  			'smooth'
+  		'smooth'
   		],
   		boxShadow: {
   			'custom-color': ' rgb(36, 113, 207, 0.5) 0px 7px 29px 0px'

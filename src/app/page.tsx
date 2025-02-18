@@ -29,10 +29,10 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="h-screen flex flex-col justify-center items-center text-center p-10 bg-blue-500  text-white">
-        <h2 className="text-4xl font-bold mb-4">Stay Organized, Stay Productive</h2>
-        <p className="text-lg mb-6">A streamlined solution to help you stay organized and on top of your tasks, making productivity effortless every day.</p>
-        <a href="#cta" className="bg-white text-blue-700 px-6 py-3 rounded-lg shadow-md hover:bg-gray-200">Get Started</a>
+      <section className="h-screen flex flex-col justify-center items-center text-center p-10 bg-hero bg-cover bg-center bg-blue-600  text-white">
+        <h2 className="text-4xl font-bold mb-4 text-white">Stay Organized, Stay Productive</h2>
+        <p className="text-lg mb-6 text-white">A streamlined solution to help you stay organized and on top of your tasks, making productivity effortless every day.</p>
+        <a href="#cta" className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700">Get Started</a>
       </section>
       {/* about */}
       <section id="about" className="w-10/12 mx-auto flex justify-around ">
