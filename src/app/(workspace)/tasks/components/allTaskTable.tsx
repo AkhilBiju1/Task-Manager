@@ -35,7 +35,7 @@ const columns: ColumnDef<Task>[] = [
         cell: ({ row }) => (
             <div className="flex gap-2">
                 {/* row.original.id */}
-                <a href={`/tasks/edit/${row.original.id}`} className=" bg-green-700 rounded-xl text-white p-2">Update Task Status</a>
+                <a href={`/tasks/edit/${row.original.id}`} className=" bg-green-700 rounded-xl text-white p-2">Edit</a>
                 
                 
             </div>
