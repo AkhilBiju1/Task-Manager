@@ -49,7 +49,7 @@ export default function TaskCards() {
     </div>)
     if (upcomingTaskQuery.isSuccess) return (
         <div className=" items-center p-2   h-full">
-            <h1 className="text-2xl font-bold mb-3">Upcoming Tasks</h1>
+            <h1 className="text-2xl font-bold mb-2">Upcoming Tasks</h1>
 
             {upcomingTaskQuery.data.length > 0 ?
                 
