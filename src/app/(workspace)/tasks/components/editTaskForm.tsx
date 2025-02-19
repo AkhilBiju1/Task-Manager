@@ -18,12 +18,32 @@ export default  function EditTaskForm() {
     });
 
     const fetchTasks = async () => {
-        const res = await axios.get(`/api/tasks?id=${id}`);
-        return res.data.task;
+       
+        try {
+
+            const res = await axios.get(`/api/tasks?id=${id}`);
+            return res.data.task;
+        } catch (error) {
+
+              if (axios.isAxiosError(error) && error.response?.status == 404) {
+                
+                throw error.response
+            } else if (axios.isAxiosError(error) && error.response) {
+                  throw error.response.data
+              }
+            else {
+                throw { message: 'Unknown error occurred' };
+            }
+        }
     };
 
-    const taskFetch = useQuery({ queryKey: ["task"], queryFn: fetchTasks,retry:0 });
-   
+    const taskFetch = useQuery({ queryKey: ["task"], queryFn: fetchTasks,retry:0,   });
+    if (taskFetch.isError) {
+        if ("status" in taskFetch.error && typeof taskFetch.error.status === "number") {
+            if (taskFetch.error.status == 404) router.replace('/not-found')
+
+        }
+    }
     useEffect(()=>{
         if (taskFetch.status === 'success') {
             setFormData({
@@ -34,7 +54,7 @@ export default  function EditTaskForm() {
                 due_date: taskFetch.data.due_date,
                 priority: taskFetch.data.priority,
             })
-        }
+        } 
     }, [taskFetch.status,taskFetch.data])
     
     const editTask = async () => {
@@ -49,7 +69,7 @@ export default  function EditTaskForm() {
         } catch (error) {
 
             if (axios.isAxiosError(error) && error.response) {
-                throw error.response.data;
+                throw {message:error.response.data.message, status: error.response.status};
             } else {
                 throw { message: 'Unknown error occurred' };
             }
@@ -64,7 +84,7 @@ export default  function EditTaskForm() {
         retry: 1,
         retryDelay: 3000
     })
-
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         console.log(e.target.value);
         

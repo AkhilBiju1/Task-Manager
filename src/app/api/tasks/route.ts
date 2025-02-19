@@ -35,12 +35,14 @@ export async function GET(req: NextRequest) {
                
                 
                 if (!task) {
-                    return NextResponse.json({ error: "Task not found" }, { status: 404 });
+                   
+                    return NextResponse.json({ message: "Task not found" }, { status: 404 });
                 }
 
                 return NextResponse.json({ task }, { status: 200 });
             } catch (error) {
                 console.error("Error fetching task:", error);
+
                 return NextResponse.json({ error: "Failed to fetch task" }, { status: 500 });
             }
         } else {

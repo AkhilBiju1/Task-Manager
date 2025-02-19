@@ -14,7 +14,7 @@ export default function Sidebar() {
 
                 <li className="mt-3"><Link replace href="/dashboard">Dashboard</Link></li>
                 <li className="mt-3"><Link replace href="/tasks">Tasks</Link></li>
-                <li className="mt-3 "><Link replace href="/projects">Projects</Link></li>
+                <li className="mt-3 "><Link  href="/projects">Projects</Link></li>
                 <li className=" mt-3 "><LogoutButton/></li>
             </ul>
             
