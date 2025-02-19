@@ -8,8 +8,8 @@ export const metadata = {
 
 export default function login() {
     return (
-        <div className=" h-screen w-screen grid grid-cols-5 grid-rows-5">
-            <div className="col-start-2 row-start-2 col-span-3 row-span-3   flex shadow-custom-color rounded-lg">
+        <div className=" h-screen w-screen grid grid-cols-5 grid-rows-6">
+            <div className="col-start-2 row-start-2 col-span-3 row-span-4   flex shadow-custom-color rounded-lg">
                 <div className="md:w-1/2 p-2">
                     <Image src={bgimg} alt="bgTask" priority={ true} />
                 </div>
