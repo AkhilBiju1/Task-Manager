@@ -77,6 +77,7 @@ export default function AddTaskForm() {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+            <label htmlFor="title">Task Title</label>
             <input
                 type="text"
                 name="title"
@@ -86,6 +87,8 @@ export default function AddTaskForm() {
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
+            
+            <label htmlFor="description">Task Description</label>
             <textarea
                 name="description"
                 placeholder="Task Description (Optional)"
@@ -93,6 +96,7 @@ export default function AddTaskForm() {
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
+            <label htmlFor="category_id">Category</label>
             <select
                 name="category_id"
                 required
@@ -108,6 +112,7 @@ export default function AddTaskForm() {
                
                 
             </select>
+            <label htmlFor="project_id">Project</label>
             <select
                 name="project_id"
                 required
@@ -122,6 +127,7 @@ export default function AddTaskForm() {
                 ))
  }           
             </select>
+            <label htmlFor="due_date">Due Date</label>
             <input
                 type="date"
                 name="due_date"
@@ -130,6 +136,7 @@ export default function AddTaskForm() {
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
+            <label htmlFor="priority">Priority</label>
             <select
                 name="priority"
                 required

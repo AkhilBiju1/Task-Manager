@@ -58,24 +58,24 @@ export default function TaskCards() {
     </div>)
     if (upcomingTaskQuery.isSuccess) return (
         <div className=" items-center p-2   h-full w-full">
-            <h1 className="text-2xl font-bold mb-1">Upcoming Tasks</h1>
+            <h1 className="text-xl font-bold mb-1">Upcoming Tasks</h1>
 
             {upcomingTaskQuery.data.length > 0 ?
                 
-                <div className="w-full h-full  gap-4">
+                <div className="w-full h-full  ">
                     {upcomingTaskQuery.data.map((task: { id: string, title: string, description: string, status: string, priority: string, due_date: string }, index: number) => (
-                        <div key={index} className="bg-white  shadow-md rounded-2xl p-6 w-full">
-                            <h2 className="text-xl font-semibold uppercase">{task.title}</h2>
+                        <div key={index} className="bg-white   rounded-2xl p-2 w-full">
+                            <h2 className="text-lg font-semibold uppercase">{task.title}</h2>
                             <p className="text-gray-800 mt-2 capitalize">{task.description}</p>
-                            <div className="mt-2 flex justify-between" >
+                            <div className="mt-1 flex justify-between" >
                                 <p className="text-gray-600 mt-2">Status: </p>
                                 <p className={task.status == 'pending' ? "text-red-600 mt-2 capitalize" : "text-green-600 mt-2 capitalize"}>{task.status} </p>
                             </div>
-                            <div className="mt-2 flex justify-between" >
+                            <div className="mt-1 flex justify-between" >
                                 <p className="text-gray-600 mt-2">Priority: </p>
                                 <p className={task.priority == 'high' ? "text-red-600 mt-2" : "text-green-600 mt-2 capitalize"}>{task.priority}</p>
                             </div>
-                            <div className="flex mt-2 justify-between">
+                            <div className="flex mt-1 justify-between">
                                 <p className="text-gray-600 mt-2">Due Date: </p>
                                 <p className="text-red-600 mt-2">{new Date(task.due_date).toLocaleString("en-GB", {
                                     day: "2-digit",
@@ -86,7 +86,7 @@ export default function TaskCards() {
                             </div>
                             {
                                 task.status == 'pending' ?
-                                    <div className={`flex mt-2 justify-between`}>
+                                    <div className={`flex mt-1 justify-between`}>
                                         <button disabled={taskUpdateMutation.isPending ? true : false} onClick={() => handleButton(task.id)} className="border-green-700 border-2 p-2 text-green-700 hover:text-white rounded-md hover:bg-green-700">Mark As Complete</button>
 
                                     </div> : ''

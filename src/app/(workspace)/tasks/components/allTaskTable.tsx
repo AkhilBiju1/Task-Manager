@@ -83,7 +83,7 @@ export default function TasksTable() {
    if(isSuccess) return (
         <div className="h-full">
             <div className="mb-4 flex flex-row-reverse">
-                <input className="w-2/6 focus:outline-none border-2 rounded-lg p-2 border-blue-700"
+                <input className="w-full md:w-2/6 focus:outline-none border-2 rounded-lg p-2 border-blue-700"
                     placeholder="Search tasks..."
                     value={globalFilter}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setGlobalFilter(e.target.value)}

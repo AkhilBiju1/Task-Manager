@@ -98,6 +98,7 @@ export default  function EditTaskForm() {
     if(taskFetch.isPending) return <h1 className="text-center">Please Wait</h1>
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
+            <label htmlFor="title">Task Title</label>
             <input
                 type="text"
                 name="title"
@@ -107,6 +108,7 @@ export default  function EditTaskForm() {
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
+            <label htmlFor="description">Description</label>
             <textarea
                 name="description"
                 placeholder="Task Description (Optional)"
@@ -114,7 +116,7 @@ export default  function EditTaskForm() {
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
-           
+            <label htmlFor="due_date">Due Date</label>
             <input
                 type="date"
                 name="due_date"
@@ -123,6 +125,7 @@ export default  function EditTaskForm() {
                 onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
             />
+            <label htmlFor="status">Status</label>
             <select
                 name="status"
                 required
@@ -134,6 +137,7 @@ export default  function EditTaskForm() {
                 <option value="pending">Pending</option>
                 <option value="Completed">Completed</option>
             </select>
+            <label htmlFor="priority">Priority</label>
             <select
                 name="priority"
                 required

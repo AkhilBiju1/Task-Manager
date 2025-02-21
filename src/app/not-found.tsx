@@ -3,7 +3,7 @@ export default function notFound() {
     return (
         <div className="w-screen h-screen grid grid-cols-3 grid-rows-3">
             
-            <div className="col-start-2 row-start-2 rounded-xl p-3">
+            <div className="md:col-start-2 row-start-2 col-span-full md:col-span-1  rounded-xl p-3">
                 <h1 className="text-7xl text-center font-semibold">404</h1>
                 <h2 className="my-3 text-center text-3xl">UH OH! Your'r lost.</h2>
                 <p className="text-center ">The page you are looking for does not exist.

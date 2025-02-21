@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(req: NextRequest) {
 
     const token = req.cookies.get('token')?.value
-
     if (req.nextUrl.pathname === '/' && token) return NextResponse.redirect(new URL("/dashboard", req.url));
 
     if (req.nextUrl.pathname === '/' && !token) return NextResponse.next()
@@ -14,7 +13,6 @@ export async function middleware(req: NextRequest) {
     if (req.nextUrl.pathname.startsWith("/api/auth/")) return NextResponse.next();
 
     if (!token) return NextResponse.redirect(new URL("/login", req.url));
-
 
     try {
         const verifyResponse = await fetch(`${req.nextUrl.origin}/api/auth/verifytoken`, {
@@ -43,6 +41,7 @@ export async function middleware(req: NextRequest) {
     } catch (error) {
         return NextResponse.redirect(new URL("/login", req.url));
     }
+  
 
 }
 export const config = {
