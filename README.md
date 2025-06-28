@@ -1,8 +1,7 @@
 visit 
 https://task-manager-flax-one.vercel.app/
 
-username user 
-password user
+username: user | password: user
 
 
 
